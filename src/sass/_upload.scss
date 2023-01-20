@@ -12,6 +12,16 @@
   z-index: 1000;
   transition: all 0.5s;
 
+  @include scrollbar;
+
+  @media only screen and (max-width: $bp-small) {
+    padding: 4rem 5rem;
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    overflow: auto;
+  }
+
   .btn--close-modal {
     font-family: inherit;
     color: inherit;
@@ -46,6 +56,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem 6rem;
+
+  @media only screen and (max-width: $bp-small) {
+    grid-template-columns: 1fr;
+  }
 
   &__column {
     display: grid;

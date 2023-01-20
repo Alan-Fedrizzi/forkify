@@ -5,10 +5,19 @@
   align-items: center;
   justify-content: space-between;
 
+  @media only screen and (max-width: $bp-small) {
+    flex-direction: column;
+  }
+
   &__logo {
     margin-left: 4rem;
     height: 4.6rem;
     display: block;
+
+    @media only screen and (max-width: $bp-small) {
+      margin: 1rem 0 1rem 1rem;
+      align-self: flex-start;
+    }
   }
 }
 
@@ -19,6 +28,10 @@
   align-items: center;
   padding-left: 3rem;
   transition: all 0.3s;
+
+  @media only screen and (max-width: $bp-small) {
+    margin-bottom: 1rem;
+  }
 
   &:focus-within {
     transform: translateY(-2px);
@@ -60,6 +73,12 @@
   align-self: stretch;
   margin-right: 2.5rem;
 
+  @media only screen and (max-width: $bp-small) {
+    margin-right: 0;
+    margin-bottom: 1rem;
+    align-self: flex-end;
+  }
+
   &__list {
     list-style: none;
     display: flex;
@@ -85,6 +104,10 @@
 
     display: flex;
     align-items: center;
+
+    @media only screen and (max-width: $bp-small) {
+      padding: 1.5rem;
+    }
 
     svg {
       height: 2.4rem;

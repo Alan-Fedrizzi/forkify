@@ -31,6 +31,11 @@
 
   @media only screen and (max-width: $bp-small) {
     margin-bottom: 1rem;
+    width: 70%;
+  }
+
+  @media only screen and (max-width: $bp-smallest) {
+    width: 90%;
   }
 
   &:focus-within {
@@ -61,11 +66,19 @@
         color: white;
       }
     }
+
+    @media only screen and (max-width: $bp-small) {
+      width: 100%;
+    }
   }
 
   &__btn {
     font-weight: 600;
     font-family: inherit;
+
+    @media only screen and (max-width: $bp-smallest) {
+      padding: 1rem 3rem;
+    }
   }
 }
 

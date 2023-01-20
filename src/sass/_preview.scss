@@ -74,6 +74,10 @@
     max-width: 25rem;
     white-space: nowrap;
     overflow: hidden;
+
+    @media only screen and (max-width: $bp-smallest) {
+      max-width: initial;
+    }
   }
 
   &__publisher {

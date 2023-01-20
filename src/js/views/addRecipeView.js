@@ -13,7 +13,6 @@ class AddRecipeView extends View {
   constructor() {
     super();
     this._addHandlerShowWindow();
-    // não precisa ser no controler
     this._addHandlerHideWindow();
   }
 
@@ -34,11 +33,7 @@ class AddRecipeView extends View {
   addHandlerUpload(handler) {
     this._parentElement.addEventListener('submit', function (e) {
       e.preventDefault();
-      // this aponta para o _parentElement, que é o <form>
-      // FormData retorna um objeto, vamos spread ele em um array
       const dataArr = [...new FormData(this)];
-      // vamos subir esse data para a API, isso deve ser feito no model
-      // Object.fromEntries pega um array of entries e converte em um objeto (é o oposto de Object.entries)
       const data = Object.fromEntries(dataArr);
       handler(data);
     });

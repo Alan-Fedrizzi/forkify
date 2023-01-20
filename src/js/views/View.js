@@ -1,8 +1,6 @@
 import icons from 'url:../../img/icons.svg'; // Parcel 2
 
 export default class View {
-  // usaremos como parent class para outras view (childs)
-  // por isso export default
   _data;
 
   /**
@@ -15,7 +13,6 @@ export default class View {
    * @todo Finish implementation
    */
   render(data, render = true) {
-    // vamos checar se data exists, se é array e se está vazio
     if (!data || (Array.isArray(data) && data.length === 0))
       return this.renderError();
 
@@ -29,51 +26,29 @@ export default class View {
   }
 
   update(data) {
-    // vamos checar se data exists, se é array e se está vazio
-    // if (!data || (Array.isArray(data) && data.length === 0))
-    //   return this.renderError();
-    // removemos para não aparecer msg de erro qd recarrega a página
-
     this._data = data;
     const newMarkup = this._generateMarkup();
 
-    // vamos converter a string do markup para o DOM, para conseguir comparar com o existente na página
     const newDOM = document.createRange().createContextualFragment(newMarkup);
     const newElements = Array.from(newDOM.querySelectorAll('*'));
-    // * seleciona todos os elementos do DOM
-    // Array.from converte uma node list para array
-    const curElements = Array.from(this._parentElement.querySelectorAll('*'));
-    // console.log(curElements);
-    // console.log(newElements);
 
-    // comparar os arrays:
-    // isEqualNode compara os conteúdos dos elementos
+    const curElements = Array.from(this._parentElement.querySelectorAll('*'));
+
     newElements.forEach((newEl, i) => {
       const curEl = curElements[i];
-      // console.log(curEl, newEl.isEqualNode(curEl));
 
-      // se são diferentes, vai ser atualizado
       // Updates changed TEXT
       if (
         !newEl.isEqualNode(curEl) &&
         newEl.firstChild?.nodeValue.trim() !== ''
       ) {
-        // firstChild might not exist, por isso do ?
-        // console.log('😍', newEl.firstChild.nodeValue.trim());
-        // qd tem um texto diferente, ele considera que a div pai tb é diferente, e substitui tudo, por isso não vai dar certo dessa forma.
-        // temos que checar se o elemento só contém texto, que é o que queremos trocar.
-        // se o texto for diferente de uma string vazia
-        // The trim() method removes whitespace from both ends of a string and returns a new string, without modifying the original string.
         curEl.textContent = newEl.textContent;
       }
 
       // Updates changed ATTIBUTES
       if (!newEl.isEqualNode(curEl))
-        // console.log(newEl.attributes);
-        // console.log(Array.from(newEl.attributes));
-        Array.from(newEl.attributes).forEach(
-          attr => curEl.setAttribute(attr.name, attr.value)
-          // estamos colocando os atributos do newEl no curEl
+        Array.from(newEl.attributes).forEach(attr =>
+          curEl.setAttribute(attr.name, attr.value)
         );
     });
   }

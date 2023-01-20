@@ -12,7 +12,6 @@ class BookmarksView extends View {
   }
 
   _generateMarkup() {
-    // this._data é um array, vamos fazer um loop nele
     return this._data
       .map(bookmark => previewView.render(bookmark, false))
       .join('');

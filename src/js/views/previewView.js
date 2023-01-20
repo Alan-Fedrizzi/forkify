@@ -6,7 +6,6 @@ class PreviewView extends View {
 
   _generateMarkup() {
     const id = window.location.hash.slice(1);
-    // vamos verificar se o id da url é o mesmo do link, se for, coloca a classe --active
     return `
       <li class="preview">
         <a class="preview__link ${

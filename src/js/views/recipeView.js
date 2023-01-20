@@ -2,8 +2,6 @@ import View from './View.js';
 import icons from 'url:../../img/icons.svg'; // Parcel 2
 import { Fraction } from 'fractional';
 
-// console.log(Fraction);
-
 class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
   _errorMessage = 'We could not find that recipe. Please try another one!';
@@ -18,9 +16,6 @@ class RecipeView extends View {
       const btn = e.target.closest('.btn--update-servings');
       if (!btn) return;
 
-      // o + converte para número
-      // const updateTo = +btn.dataset.updateTo;
-      // if (updateTo > 0) handler(updateTo);
       const { updateTo } = btn.dataset;
       if (+updateTo > 0) handler(+updateTo);
     });

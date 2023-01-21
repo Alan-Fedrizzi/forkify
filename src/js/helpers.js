@@ -5,6 +5,7 @@ export const TIMEOUT_SEC = 10;
 export const RES_PER_PAGE = 10;
 export const KEY = '687fdd71-64f2-4bd9-93f5-c442264d8b96';
 export const MODAL_CLOSE_SEC = 2.5;
+export const BREAKPOINT_SMALL = 800;
 /////////////////////////////////////////////////
 
 // functions that we use all over the project

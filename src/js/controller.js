@@ -1,11 +1,12 @@
 import * as model from './model.js';
-import { MODAL_CLOSE_SEC } from './helpers.js';
+import { MODAL_CLOSE_SEC, BREAKPOINT_SMALL } from './helpers.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/test.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
 import addRecipeView from './views/addRecipeView.js';
+import previewView from './views/previewView.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
@@ -34,6 +35,16 @@ const controlRecipes = async function () {
 
     // 3) Rendering recipe
     recipeView.render(model.state.recipe);
+
+    // 4) Close search results on mobile devices
+    if (
+      window.innerWidth <= BREAKPOINT_SMALL &&
+      previewView._searchResults.classList.contains(
+        'search-results--open-search-results-mobile'
+      )
+    ) {
+      previewView.toggleSearchResults();
+    }
   } catch (err) {
     console.error(err);
     recipeView.renderError();
@@ -56,6 +67,11 @@ const controlSearchResults = async function () {
 
     // 4) Render initial pagination buttons
     paginationView.render(model.state.search);
+
+    // 5) Open search results mobile
+    if (window.innerWidth <= BREAKPOINT_SMALL) {
+      previewView.toggleSearchResults();
+    }
   } catch (err) {
     console.log(err);
   }
@@ -136,3 +152,18 @@ const init = function () {
 };
 
 init();
+
+window.addEventListener(
+  'resize',
+  function () {
+    if (
+      window.innerWidth <= BREAKPOINT_SMALL &&
+      previewView._searchResults.classList.contains(
+        'search-results--open-search-results-mobile'
+      )
+    ) {
+      previewView.toggleSearchResults();
+    }
+  },
+  true
+);

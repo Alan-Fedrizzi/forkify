@@ -23,43 +23,56 @@
 }
 
 .button-results-mobile {
-  @extend %btn;
-
+  background-image: $gradient;
+  border-radius: 10rem;
+  border: none;
+  cursor: pointer;
   height: 5rem;
   width: 5rem;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   left: 10%;
   top: 50%;
   transform: translate(-50%, 50%);
   transition: all 0.6s ease-in-out;
+  z-index: 20;
+
+  @media only screen and (max-width: $bp-small) {
+    display: flex;
+  }
+
+  &:focus {
+    outline: none;
+  }
 
   &__container {
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    height: 100%;
+    width: 100%;
 
     &::before,
     &::after {
       content: '';
       height: 2px;
       width: 1.8rem;
-      background-color: $color-grey-dark-1;
+      background-color: $color-grey-light-1;
       position: absolute;
       top: 50%;
-      left: -2px;
+      left: 50%;
       transition: all 0.6s ease-in-out;
     }
 
     &::before {
-      transform: translateY(-0.6rem) rotate(-45deg);
+      transform: translateX(-50%) translateY(-0.6rem) rotate(45deg);
     }
 
     &::after {
-      transform: translateY(0.6rem) rotate(45deg);
+      transform: translateX(-50%) translateY(0.6rem) rotate(-45deg);
     }
   }
 
@@ -68,13 +81,11 @@
 
     .button-results-mobile__container {
       &::before {
-        transform: translateY(-0.6rem) rotate(45deg);
-        left: 2px;
+        transform: translateX(-50%) translateY(-0.6rem) rotate(135deg);
       }
 
       &::after {
-        transform: translateY(0.6rem) rotate(-45deg);
-        left: 2px;
+        transform: translateX(-50%) translateY(0.6rem) rotate(-135deg);
       }
     }
   }

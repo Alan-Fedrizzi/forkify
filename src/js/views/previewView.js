@@ -4,6 +4,35 @@ import icons from 'url:../../img/icons.svg'; // Parcel 2
 class PreviewView extends View {
   _parentElement = '';
 
+  _body = document.querySelector('body');
+  _buttonResultsMobile = document.querySelector('.button-results-mobile');
+  _searchResults = document.querySelector('.search-results');
+
+  constructor() {
+    super();
+    this._addHandlerShowResults();
+  }
+
+  toggleSearchResults() {
+    this._body.classList.toggle('open-modal');
+    this._buttonResultsMobile.classList.toggle('button-results-mobile--open');
+    this._searchResults.classList.toggle(
+      'search-results--open-search-results-mobile'
+    );
+    this._searchResults.style.setProperty(
+      '--top-of-page',
+      `${window.pageYOffset}px`
+    );
+    console.log(window.pageYOffset);
+  }
+
+  _addHandlerShowResults() {
+    this._buttonResultsMobile.addEventListener(
+      'click',
+      this.toggleSearchResults.bind(this)
+    );
+  }
+
   _generateMarkup() {
     const id = window.location.hash.slice(1);
     return `
